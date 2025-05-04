@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/style.css" type="text/css">
+    <link rel="shortcut icon" href="./src/img/wiggle-icon-0.png" type="image/x-icon" id="favicon">
+    <title>Wiggle Canvas</title>
+  </head>
+  <body>
+    <h1>Wiggle Canvas Demo</h1>
+    <canvas id="drawing" width="600px" height="600px"></canvas>
+    <div class="controls">
+      <div class="color-options-wrapper">
+        <button id="blackBtn" class="color-button btn-black btn-selected" data-color="#000000"></button>
+        <button id="redBtn" class="color-button btn-red" data-color="#FF0000"></button>
+        <button id="blueBtn" class="color-button btn-blue" data-color="#0000FF"></button>
+        <button id="greenBtn" class="color-button btn-green" data-color="#00FF00"></button>
+        <button id="purpleBtn" class="color-button btn-purple" data-color="#FF00FF"></button>
+        <button id="whiteBtn" class="color-button btn-white" data-color="#FFFFFF"></button>
+      </div>
+      <div class="canvas-buttons">
+        <button id="clearBtn">Clear Canvas</button>
+        <!-- <button id="jsonBtn">JSON</button> -->
+         <button id="saveGifBtn">Save as GIF</button>
+      </div>
+    </div>
+    
+
+
+
+
+
+    <script type="module" src="./src/app.ts"></script>
+  </body>
+</html>
