@@ -8,6 +8,10 @@ const SHAPES = [PLUS_PIXEL, DIAG_PIXEL, REVERSE_DIAG_PIXEL];
 // const MAX_PIXELS = 20; // Maximum number of pixels before cleanup
 const PIXEL_SPACING = 2; // Minimum distance between pixels
 const ANIMATION_FRAME_RATE = 60;
+const root = document.querySelector(':root') as HTMLElement | null;
+if (!root) {
+  console.error("Root not found");
+}
 
 // State
 let CURRENT_COLOR = "#000000";
@@ -17,6 +21,7 @@ let lastX: number | null = null;
 let lastY: number | null = null;
 let animationFrameId: number | null = null;
 let lastFrameTime = 0;
+let CANVAS_BACKGROUND = "#FFFFFF";
 
 // Helpers
 function getRandShape() {
@@ -165,6 +170,8 @@ if (clearBtn) {
   });
 }
 
+
+// Outputs JSON for each WigglePixel
 const jsonBtn = document.getElementById("jsonBtn");
 if (jsonBtn) {
   jsonBtn.addEventListener("click", () => {
@@ -172,6 +179,7 @@ if (jsonBtn) {
   });
 }
 
+// Buttons that change pencil color
 const colorButtons = document.querySelectorAll("[data-color]");
 colorButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -184,6 +192,15 @@ colorButtons.forEach((button) => {
   });
 });
 
+// Background color button
+const bgColorInput = document.getElementById("bgColorInput");
+if (bgColorInput) {
+  bgColorInput.addEventListener("change", () => {
+    CANVAS_BACKGROUND = (bgColorInput as HTMLInputElement).value || "#FFFFFF";
+    root?.style.setProperty('--drawing-background', CANVAS_BACKGROUND);
+  })
+}
+
 
 
 // Save to GIF
@@ -194,7 +211,7 @@ async function captureGif(frames = 3, frameDelay = ANIMATION_FRAME_RATE) {
     width: canvas.width,
     height: canvas.height,
     workerScript: gifWorkerUrl,
-    background: "#FFFFFF",
+    background: CANVAS_BACKGROUND,
   });
 
   const originalDrawing = ctx.fillStyle;
@@ -202,7 +219,7 @@ async function captureGif(frames = 3, frameDelay = ANIMATION_FRAME_RATE) {
   stopAnimation();
 
   for (let i = 0; i < frames; i++) {
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = CANVAS_BACKGROUND;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     activePixels.forEach((pixel) => {
       pixel.currentFrame = i % pixel.frameData.length;

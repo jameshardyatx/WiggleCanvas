@@ -9,6 +9,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --drawing-background: #FFFFFF;
 }
 
 body {
@@ -31,12 +33,68 @@ h1 {
   color: white;
 }
 
-.controls {
+.main-ui {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  place-items: center;
-  gap: 1rem;
-  margin-top: 1rem;
+  grid-template: auto 1fr auto / auto 1fr auto;
+  gap: 2rem;
+}
+
+.draw-area {
+  background: var(--drawing-background);
+  
+}
+
+.title {
+  grid-column: 1 / 4;
+  text-align: center;
+}
+
+.middle {
+  grid-column: 2 / 3;
+}
+
+.left {
+  grid-column: 1 /2 ;
+}
+
+.bottom {
+  grid-column: 1 / 4;
+
+}
+
+.right {
+  grid-column: 3 / 4;
+  padding: 1rem;
+}
+
+.color-options-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bg-color-option-wrapper {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bg-color-option-wrapper input {
+  width: 50px;
+  height: 50px;
+  padding: 1px;
+  border: 1px solid black;
+}
+
+.bg-color-option-wrapper label {
+  font-size: 8pt;
+  text-align: center;
+}
+
+.canvas-buttons {
+  text-align: center;
 }
 
 .color-button {
@@ -87,3 +145,6 @@ h1 {
 .btn-black.btn-selected {
   box-shadow: inset 0 0 5px 3px white;
 }
+
+
+
